@@ -5,5 +5,5 @@
     <div class="mb-1">Add new user</div>
     ${message?ifExists}
 <#--    ${message!" " }-->
-    <@l.login "/registration" "Add" true/>
+    <@l.login "/registration" "Sign up" true/>
 </@c.page>

@@ -53,7 +53,7 @@ public class UserService implements UserDetailsService {
     private void sendMessage(User user) {
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
-                    "Hello, %s! %n" +
+                    "Hello, %s! \n" +
                             "Welcome to Spring Boot Tutorial. Please, visit next link: " +
                             "http://localhost:8080/activate/%s",
                     user.getUsername(),
