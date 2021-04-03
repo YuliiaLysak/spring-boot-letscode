@@ -63,7 +63,8 @@
             </div>
         </#if>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <#if !isRegisterForm><a href="/registration">Add new user</a></#if>
+<#--        TODO delete later because button 'sign up' was added-->
+<#--        <#if !isRegisterForm><a href="/registration">Add new user</a></#if>-->
         <button class="btn btn-primary" type="submit">${value}</button>
     </form>
 </#macro>

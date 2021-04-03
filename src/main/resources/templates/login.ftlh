@@ -1,5 +1,5 @@
 <#import "parts/common.ftlh" as c>
-<#import "parts/login.ftlh" as l>
+<#import "parts/login-logout.ftlh" as l>
 
 <@c.page>
 <#--    Проверка на ошибку будет осуществляться не по сессии,
