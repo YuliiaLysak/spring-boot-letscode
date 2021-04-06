@@ -25,11 +25,15 @@ import java.util.UUID;
 
 @Controller
 public class MainController {
-    @Autowired
     private MessageRepository messageRepository;
 
     @Value("${upload.path}")
     private String uploadPath;
+
+    @Autowired
+    public MainController(MessageRepository messageRepository) {
+        this.messageRepository = messageRepository;
+    }
 
 
     @GetMapping("/")
@@ -98,7 +102,6 @@ public class MainController {
         }
     }
 
-    //TODO - move to separate MessageController
     @GetMapping("/user-messages/{user}")
     public String userMessages(
             @AuthenticationPrincipal User currentUser,
@@ -142,5 +145,4 @@ public class MainController {
 
         return "redirect:/user-messages/" + userId;
     }
-
 }
