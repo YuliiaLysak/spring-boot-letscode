@@ -37,7 +37,7 @@
         <#--'if check' for showing 'sign in / sign up' button for unauthorized users-->
         <#if name = "unknown">
             <a href="/login" class="mr-3">
-                <button class="btn btn-primary" type="submit">Sign in</button>
+                <button class="btn btn-outline-primary" type="submit">Sign in</button>
             </a>
 
             <a href="/registration">
