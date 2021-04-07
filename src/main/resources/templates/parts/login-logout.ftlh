@@ -1,11 +1,16 @@
-<#macro login path value isRegisterForm>
+<#--import needed for accessing message.properties as <@spring.message "keyName"/>-->
+<#import "/spring.ftl" as spring/>
+
+<#macro login path isRegisterForm>
     <form action="${path}" method="post">
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label"> User Name : </label>
+            <label class="col-sm-2 col-form-label">
+                <@spring.message "username"/> :
+            </label>
             <div class="col-sm-3">
                 <input type="text" name="username" value="<#if user??>${user.username}</#if>"
                        class="form-control ${(usernameError??)?string('is-invalid', '')}"
-                       placeholder="User name"/>
+                       placeholder="<@spring.message "username"/>"/>
                 <#if usernameError??>
                     <div class="invalid-feedback">
                         ${usernameError}
@@ -14,11 +19,13 @@
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label"> Password : </label>
+            <label class="col-sm-2 col-form-label">
+                <@spring.message "password"/> :
+            </label>
             <div class="col-sm-3">
                 <input type="password" name="password"
                        class="form-control ${(passwordError??)?string('is-invalid', '')}"
-                       placeholder="Password"/>
+                       placeholder="<@spring.message "password"/>"/>
                 <#if passwordError??>
                     <div class="invalid-feedback">
                         ${passwordError}
@@ -28,11 +35,13 @@
         </div>
         <#if isRegisterForm>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label"> Confirm password : </label>
+                <label class="col-sm-2 col-form-label">
+                    <@spring.message "confirm"/>:
+                </label>
                 <div class="col-sm-3">
                     <input type="password" name="password2"
                            class="form-control ${(password2Error??)?string('is-invalid', '')}"
-                           placeholder="Confirm password"/>
+                           placeholder="<@spring.message "confirm"/>"/>
                     <#if password2Error??>
                         <div class="invalid-feedback">
                             ${password2Error}
@@ -63,32 +72,21 @@
             </div>
         </#if>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button class="btn btn-primary" type="submit">${value}</button>
+        <button class="btn btn-primary" type="submit">
+        <#if isRegisterForm>
+            <@spring.message "signup"/>
+        <#else>
+            <@spring.message "signin"/>
+        </#if>
+        </button>
     </form>
 </#macro>
 
 <#macro logout>
     <form action="/logout" method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button class="btn btn-primary" type="submit">Sign Out</button>
+        <button class="btn btn-primary" type="submit">
+            <@spring.message "signout"/>
+        </button>
     </form>
 </#macro>
-
-
-<#--ссылка на profile у не зарегистрированного пользователя
-Так фиксится: <#if name!="unknown"></#if>
-
-Решается это дело в navbar.ftl дописанием к
-условию если юзер авторизован и не имеет имя Guest  <#if user??&&name!="Guest">
-
-
-
-<#include "security.ftl">
-
-<#if known>
-<li class="nav-item">
-      	<a class="nav-link" href="/user/profile">Profile</a>
- </li>
-</#if>
-
--->

@@ -1,7 +1,9 @@
 <#import "parts/common.ftlh" as c>
+<#--import needed for accessing message.properties as <@spring.message "keyName"/>-->
+<#import "/spring.ftl" as spring/>
 
 <@c.page>
-    User editor
+    <@spring.message "userEdit"/>
 
     <form action="/user" method="post">
         <input type="text" name="username" value="${user.username}">
@@ -15,7 +17,7 @@
         </#list>
         <input type="hidden" name="userId" value="${user.id}">
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button class="btn btn-primary" type="submit">Save</button>
+        <button class="btn btn-primary" type="submit"><@spring.message "save"/></button>
 
     </form>
 </@c.page>

@@ -1,12 +1,18 @@
 <#import "parts/common.ftlh" as c>
+<#--import needed for accessing message.properties as <@spring.message "keyName"/>-->
+<#import "/spring.ftl" as spring/>
 
 <@c.page>
     <h3>${userChannel.username}</h3>
     <#if !isCurrentUser>
         <#if isSubscriber>
-            <a class="btn btn-info" href="/user/unsubscribe/${userChannel.id}">Unsubscribe</a>
+            <a class="btn btn-info" href="/user/unsubscribe/${userChannel.id}">
+                <@spring.message "unsubscribe"/>
+            </a>
         <#else>
-            <a class="btn btn-info" href="/user/subscribe/${userChannel.id}">Subscribe</a>
+            <a class="btn btn-info" href="/user/subscribe/${userChannel.id}">
+                <@spring.message "subscribe"/>
+            </a>
         </#if>
     </#if>
 
@@ -15,7 +21,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title">Subscriptions</div>
+                        <div class="card-title"><@spring.message "subscriptions"/></div>
                         <h3 class="card-text">
                             <a href="/user/subscriptions/${userChannel.id}/list">${subscriptionsCount}</a>
                         </h3>
@@ -25,7 +31,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title">Subscribers</div>
+                        <div class="card-title"><@spring.message "subscribers"/></div>
                         <h3 class="card-text">
                             <a href="/user/subscribers/${userChannel.id}/list">${subscribersCount}</a>
                         </h3>

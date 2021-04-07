@@ -1,13 +1,15 @@
 <#import "parts/common.ftlh" as c>
+<#--import needed for accessing message.properties as <@spring.message "keyName"/>-->
+<#import "/spring.ftl" as spring/>
 
 <@c.page>
-    List of users
-    <table>
+    <@spring.message "userlist"/>
+    <table class="table table-striped table-sm">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Role</th>
-            <th></th>
+            <th scope="col"><@spring.message "name"/></th>
+            <th scope="col"><@spring.message "role"/></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
