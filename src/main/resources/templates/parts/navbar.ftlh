@@ -34,7 +34,7 @@
 
         <div class="navbar-text mr-3">${name}</div>
 
-        <#--'if check' for showing 'sign in / sign up' button for unauthorized users-->
+        <#--'if check' for showing 'sign in / sign up / sign out' button for unauthorized users-->
         <#if name = "unknown">
             <a href="/login" class="mr-3">
                 <button class="btn btn-outline-primary" type="submit">Sign in</button>
@@ -43,11 +43,9 @@
             <a href="/registration">
                 <button class="btn btn-primary" type="submit">Sign up</button>
             </a>
-        </#if>
-
-        <#--'if check' for showing 'sign out' button only if user authorized-->
-        <#if user??>
+        <#else>
             <@l.logout/>
         </#if>
+
     </div>
 </nav>

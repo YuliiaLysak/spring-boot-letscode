@@ -14,7 +14,7 @@
     <artifactId>spring-boot-letscode</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-letscode</name>
-    <description>Demo project for Spring Boot (from letsCode0</description>
+    <description>Demo project for Spring Boot (from letsCode)</description>
 
     <properties>
         <java.version>11</java.version>

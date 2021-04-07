@@ -24,16 +24,19 @@ public class RegistrationController {
     private final static String CAPTCHA_URL = "https://www.google.com/" +
             "recaptcha/api/siteverify?secret=%s&response=%s";
 
-    private UserService userService;
-    private RestTemplate restTemplate;
-
-    @Value("${recaptcha.secret}")
-    private String secret;
+    private final UserService userService;
+    private final RestTemplate restTemplate;
+    private final String secret;
 
     @Autowired
-    public RegistrationController(UserService userService, RestTemplate restTemplate) {
+    public RegistrationController(
+            UserService userService,
+            RestTemplate restTemplate,
+            @Value("${recaptcha.secret}") String secret
+    ) {
         this.userService = userService;
         this.restTemplate = restTemplate;
+        this.secret = secret;
     }
 
 
