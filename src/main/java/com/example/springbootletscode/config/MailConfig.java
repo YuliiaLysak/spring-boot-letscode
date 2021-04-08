@@ -10,24 +10,27 @@ import java.util.Properties;
 
 @Configuration
 public class MailConfig {
+    private final String host;
+    private final String username;
+    private final String password;
+    private final int port;
+    private final String protocol;
+    private final String debug;
 
-    @Value("${spring.mail.host}")
-    private String host;
-
-    @Value("${spring.mail.username}")
-    private String username;
-
-    @Value("${spring.mail.password}")
-    private String password;
-
-    @Value("${spring.mail.port}")
-    private int port;
-
-    @Value("${spring.mail.protocol}")
-    private String protocol;
-
-    @Value("${mail.debug}")
-    private String debug;
+    public MailConfig(
+            @Value("${spring.mail.host}") String host,
+            @Value("${spring.mail.username}") String username,
+            @Value("${spring.mail.password}") String password,
+            @Value("${spring.mail.port}") int port,
+            @Value("${spring.mail.protocol}") String protocol,
+            @Value("${mail.debug}") String debug) {
+        this.host = host;
+        this.username = username;
+        this.password = password;
+        this.port = port;
+        this.protocol = protocol;
+        this.debug = debug;
+    }
 
     @Bean
     public JavaMailSender getMailSender() {
@@ -41,7 +44,6 @@ public class MailConfig {
         Properties properties = mailSender.getJavaMailProperties();
         properties.setProperty("mail.transport.protocol", protocol);
         properties.setProperty("mail.debug", debug);
-
 
         return mailSender;
     }

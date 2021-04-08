@@ -16,8 +16,11 @@ import java.util.Locale;
 
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
-    @Value("${upload.path}")
-    private String uploadPath;
+    private final String uploadPath;
+
+    public MvcConfig(@Value("${upload.path}") String uploadPath) {
+        this.uploadPath = uploadPath;
+    }
 
     @Bean
     public RestTemplate getRestTemplate() {
@@ -25,7 +28,8 @@ public class MvcConfig implements WebMvcConfigurer {
     }
 
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/login")
+                .setViewName("login");
     }
 
     @Override
@@ -37,7 +41,7 @@ public class MvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/");
     }
 
-    // methods and beans for localization
+    // methods and beans for internationalization
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
