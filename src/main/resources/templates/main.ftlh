@@ -6,7 +6,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <form method="get" action="/main" class="form-inline">
-                <input type="text" name="filter" class="form-control" value="${filter?ifExists}"
+                <input type="text" name="filter" class="form-control" value="${filter!}"
                        placeholder="<@spring.message "searchByTag"/>">
                 <button type="submit" class="btn btn-primary ml-2">
                     <@spring.message "search"/>

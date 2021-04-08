@@ -5,7 +5,6 @@
 
 <@c.page>
     <div class="mb-1"><@spring.message "addNewUser"/></div>
-    ${message?ifExists}
-<#--    ${message!" " }-->
+    ${message!" "}
     <@l.login "/registration" true/>
 </@c.page>

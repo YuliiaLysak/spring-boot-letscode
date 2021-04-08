@@ -28,6 +28,7 @@ public class Message {
     @JoinColumn(name = "user_id")
     private User author;
 
+    // TODO - how to check errors with file uploading and showing filename in browse row
     private String filename;
 
     public Message(String text, String tag, User author) {

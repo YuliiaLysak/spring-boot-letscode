@@ -85,7 +85,7 @@ public class UserController {
     }
 
     @GetMapping("{type}/{user}/list")
-    public String userList(
+    public String subscriptionsList(
             Model model,
             @PathVariable User user,
             @PathVariable String type

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +20,7 @@ import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -44,7 +45,7 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(
+    public String searchMessages(
             @RequestParam(required = false, defaultValue = "") String filter,
             Model model
     ) {
@@ -62,7 +63,7 @@ public class MainController {
     }
 
     @PostMapping("/main")
-    public String add(
+    public String addMessage(
             @AuthenticationPrincipal User user,
             @Valid Message message,
             BindingResult bindingResult,
@@ -90,7 +91,7 @@ public class MainController {
     }
 
     private void saveFile(Message message, MultipartFile file) throws IOException {
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
+        if (file != null && !Objects.requireNonNull(file.getOriginalFilename()).isEmpty()) {
             File uploadDirectory = new File(uploadPath);
             if (!uploadDirectory.exists()) {
                 uploadDirectory.mkdir();
@@ -134,10 +135,10 @@ public class MainController {
             @RequestParam("file") MultipartFile file
     ) throws IOException {
         if (message.getAuthor().equals(currentUser)) {
-            if (!StringUtils.isEmpty(text)) {
+            if (!ObjectUtils.isEmpty(text)) {
                 message.setText(text);
             }
-            if (!StringUtils.isEmpty(tag)) {
+            if (!ObjectUtils.isEmpty(tag)) {
                 message.setTag(tag);
             }
 
